@@ -57,6 +57,8 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     input_word = word.upper()
     copy_letter_bank = letter_bank.copy()
+
+    # Check if each letter in the word exists in the letter bank
     for char in input_word: 
         if not char in copy_letter_bank:
             return False
@@ -66,10 +68,14 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     total_score = 0
     input_word = word.upper()
+
+    # Iterate through score values and corresponding letters
     for score, letter_score in POINTS.items():
         for char in input_word:
             if char in letter_score:
                 total_score += score
+    
+    # Bonus points for words with 7 or more letters
     if len(input_word) >= 7:
         total_score += 8
     return total_score
