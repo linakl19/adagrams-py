@@ -75,4 +75,31 @@ def score_word(word):
     return total_score
 
 def get_highest_word_score(word_list):
-    pass
+    # Variables to track the highest score 
+    winner_word = ""
+    winner_score = 0
+
+    # For loop to iterate over list of words
+    for current_word in word_list:
+        # Calculate and store score in a variable 
+        current_score = score_word(current_word)
+
+        # Update winner if current score is higher than the one storaged
+        if current_score > winner_score:
+            winner_word = current_word
+            winner_score = current_score
+        
+        # Decide winner when a score tie happens
+        elif current_score == winner_score:
+            current_length = len(current_word)
+            winner_length = len(winner_word)
+
+            if current_length == 10 and winner_length != 10:
+                winner_word = current_word
+                winner_score = current_score
+            elif current_length < winner_length and winner_length != 10:
+                winner_word = current_word
+                winner_score = current_score
+        
+        winner = (winner_word, winner_score)
+    return winner
